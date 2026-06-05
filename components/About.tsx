@@ -10,30 +10,38 @@ interface AboutProps {
 export default function About({ onSectionChange }: AboutProps) {
   const education = [
     {
-      degree: 'Master in Management (MiM) Grande Ecole',
-      school: 'HEC Paris',
-      period: 'Aug 25 – Jun 27',
-      description: 'Pursuing advanced business education at one of the world\'s top business schools'
+      degree: 'Master in Management (Grande École) - Business Administration & Management',
+      school: 'HEC Paris (Jouy-en-Josas, France)',
+      period: 'Aug 2025 – July 2027',
+      description: 'Pursuing advanced business education focusing on strategy, corporate finance, and technology management.',
+      bullets: [
+        'HEC Business Game 2026: Secured 2nd Place globally in the Schneider Electric Strategy Challenge and 3rd Place globally in the EY-Parthenon Strategic Case Challenge.',
+        'Honors: Winner of the Generative AI for Business Consulting Academy organized by Capgemini Invent.',
+        'Selected for the elite McKinsey & Co. Forward Program, focusing on strategic problem-solving and cross-functional decision-making.'
+      ]
     },
     {
-      degree: 'B.E. (Hons.), Electronics and Communication',
-      school: 'BITS Pilani, Goa Campus',
-      period: 'Aug 19 – Jun 23',
-      description: 'Graduated with honors in Electronics and Communication Engineering'
+      degree: 'Bachelor of Engineering in Electrical, Electronics & Communications Engineering',
+      school: 'BITS Pilani, India',
+      period: 'Aug 2019 – June 2023',
+      description: 'Graduated with honors in Electrical, Electronics & Communications Engineering.',
+      bullets: [
+        'Leadership: Founder of the ACM Student Chapter; managed a multi-disciplinary team to scale campus tech culture.'
+      ]
     },
     {
-      degree: '10+2, CBSE',
-      school: 'Lakshmipat Singhania Academy',
-      period: 'May 17 - May 19',
-      description: 'Completed with 94.2% marks'
+      degree: '10+2, CBSE Secondary Education',
+      school: 'Lakshmipat Singhania Academy, Kolkata',
+      period: 'May 2017 – May 2019',
+      description: 'Completed with 94.2% marks.'
     }
   ]
 
   const personalInfo = [
     { icon: Mail, label: 'Email', value: 'deveshk2102@gmail.com', link: 'mailto:deveshk2102@gmail.com' },
     { icon: Phone, label: 'Phone', value: '+33 7 49 03 48 61', link: 'tel:+33749034861' },
-    { icon: MapPin, label: 'Location', value: 'France (HEC Paris)', link: null },
-    { icon: Globe, label: 'Languages', value: 'English (Proficient), Hindi (Native), French (Elementary)', link: null }
+    { icon: MapPin, label: 'Location', value: 'Luxembourg / France', link: null },
+    { icon: Globe, label: 'Languages', value: 'English (Native), Hindi (Native), French (Elementary CEFR A2)', link: null }
   ]
 
   return (
@@ -50,8 +58,8 @@ export default function About({ onSectionChange }: AboutProps) {
             About <span className="gradient-text">Me</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            A passionate Full Stack Developer, Product Strategist, and Business Generalist with 3+ years of experience building scalable applications. 
-            Currently pursuing my Master's in Management at HEC Paris Grande École, I bridge the gap between technology and business strategy.
+            A passionate Software Engineer, Product Strategist, and Business Generalist with 4+ years of engineering and strategic experience. 
+            Currently pursuing my Master's in Management at HEC Paris Grande École and interning in Business Intelligence & Product at Amazon Luxembourg, I bridge the gap between technical execution and business strategy.
           </p>
         </motion.div>
 
@@ -79,12 +87,22 @@ export default function About({ onSectionChange }: AboutProps) {
                 >
                   <div className="flex justify-between items-start mb-2">
                     <h4 className="text-lg font-semibold text-white">{edu.degree}</h4>
-                    <span className="text-sm text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full">
+                    <span className="text-sm text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full shrink-0 ml-4">
                       {edu.period}
                     </span>
                   </div>
                   <p className="text-blue-400 font-medium mb-2">{edu.school}</p>
-                  <p className="text-gray-300 text-sm">{edu.description}</p>
+                  <p className="text-gray-300 text-sm mb-3">{edu.description}</p>
+                  {edu.bullets && (
+                    <ul className="space-y-2 mt-3 pl-1">
+                      {edu.bullets.map((bullet, bIdx) => (
+                        <li key={bIdx} className="text-gray-300 text-xs flex items-start gap-2">
+                          <span className="text-blue-400 mt-1 flex-shrink-0">•</span>
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </motion.div>
               ))}
             </div>
@@ -136,12 +154,12 @@ export default function About({ onSectionChange }: AboutProps) {
               viewport={{ once: true }}
               className="mt-8 grid grid-cols-2 gap-4"
             >
-                          <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg p-6 text-center border border-blue-500/30">
-              <div className="text-3xl font-bold text-white mb-2">3+</div>
+            <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg p-6 text-center border border-blue-500/30">
+              <div className="text-3xl font-bold text-white mb-2">4+</div>
               <div className="text-sm text-gray-300">Years Experience</div>
             </div>
             <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg p-6 text-center border border-purple-500/30">
-              <div className="text-3xl font-bold text-white mb-2">5+</div>
+              <div className="text-3xl font-bold text-white mb-2">6+</div>
               <div className="text-sm text-gray-300">Domains Mastered</div>
             </div>
             </motion.div>

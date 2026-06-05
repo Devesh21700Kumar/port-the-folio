@@ -10,7 +10,7 @@ interface HeroProps {
 
 export default function Hero({ onSectionChange }: HeroProps) {
   const [text, setText] = useState('')
-  const fullText = 'Full Stack Developer & Product Strategist'
+  const fullText = 'Business Intelligence & Product Intern @ Amazon'
   
   useEffect(() => {
     let index = 0
@@ -127,7 +127,7 @@ export default function Hero({ onSectionChange }: HeroProps) {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
         >
-          HEC Paris MiM Grande École Student | Full Stack Developer & Product Strategist | Ex-SDE-2 at Adster
+          HEC Paris MiM Grande École Student | Business Intelligence & Product Intern @ Amazon | Ex-GitHub, GSoC, MPL, InMobi
         </motion.p>
 
         {/* Social Links */}

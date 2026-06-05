@@ -10,91 +10,99 @@ interface ExperienceProps {
 export default function Experience({ onSectionChange }: ExperienceProps) {
   const experiences = [
     {
-      title: 'SDE - 2',
-      company: 'Adster',
-      location: 'Bengaluru',
-      period: 'June 24 – July 25',
+      title: 'Business Intelligence & Product Intern',
+      company: 'Amazon',
+      location: 'Luxembourg',
+      period: 'May 2026 – Present',
       description: [
-        'Led frontend contributing to the focus of Hyperscale Ads Revenue; collaborated with cross-functional teams to design and implement web applications, improving system performance',
-        'Developed and maintained APIs using Golang, ensuring data handling and seamless integration with front-end components',
-        'Led the implementation of new features and resolved critical bugs, resulting in a 20% increase in user satisfaction & engagement'
+        'Drive data-backed product strategy for Amazon’s EU operations, translating complex data structures into actionable insights.',
+        'Own key performance metrics across business units, designing analytical frameworks to optimize regional product growth.'
       ],
-      technologies: ['React', 'Golang', 'TypeScript', 'Node.js'],
+      technologies: ['SQL', 'Python', 'BI Tools', 'Data Strategy', 'Product Analytics'],
+      current: true
+    },
+    {
+      title: 'Software Development Engineer – 2 (Product & Core Platform)',
+      company: 'Adster',
+      location: 'Bangalore, India',
+      period: 'June 2024 – July 2025',
+      description: [
+        'Spearheaded optimization for Demand and Supply Side ad-server platforms, directly scaling client engagement by 30%.',
+        'Engineered a custom Web SDK from proof-of-concept (POC) to deployment, generating an average 75%+ revenue uplift (and up to 145% maximum) for partner app publishers.',
+        'Owned the end-to-end launch of an open-source framework wrapper, successfully achieving over 500 weekly active rollouts.'
+      ],
+      technologies: ['React', 'Golang', 'TypeScript', 'Node.js', 'AdTech', 'Web SDK'],
       current: false
     },
     {
-      title: 'Full Stack Engineer',
+      title: 'Frontend Engineering Lead',
       company: 'Arrowhead',
-      location: 'Bengaluru',
-      period: 'Nov 23 – May 24',
+      location: 'Bangalore, India',
+      period: 'Nov 2023 – May 2024',
       description: [
-        'Worked on the Webapp (app.arrowhead.team) using React, Vite, and TypeScript with Chakra UI for the front and Node.js and PostgreSQL for the backend',
-        'Created a frontend component library to streamline development and maintained consistency across the application',
-        'Worked on various POCs (Proof of Concepts) and Chrome extensions to explore functionalities and enhance the product\'s capabilities'
+        'Led architecture and development of multiple client-facing analytical dashboards, improving cross-functional data transparency.',
+        'Created and standardized a modular component library, reducing development lifecycle friction and speeding up product iterations.'
       ],
       technologies: ['React', 'TypeScript', 'Vite', 'Chakra UI', 'Node.js', 'PostgreSQL'],
       current: false
     },
     {
-      title: 'SDE – 1',
-      company: 'Mobile Premier League',
-      location: 'Bengaluru',
-      period: 'Aug 22 – Sept 23',
+      title: 'Software Development Engineer (Full-time & Intern)',
+      company: 'Mobile Premier League (MPL)',
+      location: 'Bangalore, India',
+      period: 'Jan 2022 – Sept 2023',
       description: [
-        'Developed striker Club with frontend in Nextjs and Typescript, integrating Google tag and headers for download and viewership metrics',
-        'Handled SEO and analytics tools integration including i-frame development for the striker app; integrated strapi CMS with a dashboard',
-        'Created an ops dashboard for the striker app, utilising GRPC, Typescript, and Nodejs for the backend',
-        'Developed Bottom sheets for the Ultra Fantasy feature in the Mobile App using React Native'
+        'Solely managed the system integration for SEO and distribution analytics of a high-traffic consumer product (striker.club), scaling core web visibility metrics.',
+        'Developed cross-functional operations and QE testing dashboards using gRPC and Node.js, enabling rapid product feature deployment.',
+        'Received a Full-Time Return Offer (PPO) following a highly selective 6-month product engineering internship.'
       ],
-      technologies: ['Next.js', 'TypeScript', 'React Native', 'GRPC', 'Strapi CMS'],
+      technologies: ['Next.js', 'TypeScript', 'React Native', 'gRPC', 'Node.js', 'Strapi CMS'],
       current: false
     },
     {
-      title: 'SDE - Intern',
-      company: 'Glance (Inmobi)',
-      location: 'Bengaluru',
-      period: 'Jul 22 – Dec 22',
+      title: 'Software Engineering Intern',
+      company: 'Glance / Shop101 (InMobi Group)',
+      location: 'Bangalore, India',
+      period: 'July 2022 – Dec 2022',
       description: [
-        'Implemented MSFT SSO for all internal panels of Shop101 with RSA encryption for security purposes',
-        'Made a daily remittance workflow and migrated all S3 links to CDN for improved performance by 30%',
-        'Integrated product image compression using APIs and Python scripts on Shop101 web pages',
-        'Contributed to Roposo\'s Grabter tool, adding country codes feature in Report Tool'
+        'Audited and optimized internal product panels, integrating secure MSFT SSO encryption and automating supply chain remittance workflows.',
+        'Designed an automated system asset compression pipeline to scale webpage performance across massive consumer-facing e-commerce operations.'
       ],
-      technologies: ['Vue.js', 'Next.js', 'TypeScript', 'Python', 'Express', 'Amazon EC2'],
+      technologies: ['Vue.js', 'Next.js', 'TypeScript', 'Python', 'Express', 'AWS', 'CDN'],
       current: false
     },
     {
-      title: 'SDE - Intern',
-      company: 'Mobile Premier League',
-      location: 'Bengaluru',
-      period: 'Jan 22 – Jul 22',
-      description: [
-        'Developed an admin dashboard for a zookeeper system using Next.js and Prisma',
-        'Implemented role-based access, event logs, Joi validation for config files, and API documentation with Swagger'
-      ],
-      technologies: ['Next.js', 'Prisma', 'Joi', 'Swagger'],
-      current: false
-    },
-    {
-      title: 'GitHub Extern',
+      title: 'GitHub Engineering Extern',
       company: 'GitHub',
       location: 'Remote',
-      period: 'Feb 22 – May 22',
+      period: 'Feb 2022 – May 2022',
       description: [
-        'Engaged in GitHub India Engineering, concentrating on developer scenarios involving GitHub Actions, GitHub Packages, GitHub Insights, and GitHub Education',
-        'Streamlined the process of obtaining DR (Decision Review) approval, optimising efficiency by 200% by revamping the algorithms and logic'
+        'Handpicked out of 14,000+ applicants to build core developer solutions alongside the GitHub Education team using Ruby on Rails.',
+        'Engaged in GitHub India Engineering, concentrating on developer scenarios involving GitHub Actions, Packages, Insights, and Education.',
+        'Streamlined the process of obtaining Decision Review (DR) approvals, optimizing process efficiency by 200%.'
       ],
-      technologies: ['Ruby on Rails', 'HTML', 'CSS', 'PostgreSQL', 'Docker'],
+      technologies: ['Ruby on Rails', 'HTML/CSS', 'PostgreSQL', 'Docker'],
       current: false
     },
     {
-      title: 'Developer',
-      company: 'Google Summer of Code \'21 (at JBOSS)',
-      location: 'Remote',
-      period: 'June 21 – August 21',
+      title: 'Lead Software Developer (Practice School)',
+      company: 'Practice School Division (BITS Pilani)',
+      location: 'India',
+      period: 'July 2021 – Dec 2021',
       description: [
-        'Enhanced APIs and produced a backend mechanism for an education platform; each API had proper documentation and testing',
-        'Added Role-based authentication to ensure the routes are secured'
+        'Appointed as Lead Software Developer to architect a comprehensive Learning Management System serving over 3,000 students annually across 3 national campuses.'
+      ],
+      technologies: ['Next.js', 'Node.js', 'System Design', 'Database Architecture'],
+      current: false
+    },
+    {
+      title: 'GSoC Developer',
+      company: 'Google Summer of Code \'21 (at JBoss Community)',
+      location: 'Remote',
+      period: 'June 2021 – Aug 2021',
+      description: [
+        'Selected among 45,000+ global applicants to scale API architecture for JBoss Community backend infrastructure targeted at emerging market education platforms.',
+        'Enhanced APIs, produced a backend mechanism, added role-based authentication, and ensured all APIs had comprehensive documentation and testing.'
       ],
       technologies: ['NestJS', 'TypeScript', 'Docker', 'MongoDB'],
       current: false
@@ -121,7 +129,7 @@ export default function Experience({ onSectionChange }: ExperienceProps) {
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-purple-600"></div>
+          <div className="absolute left-[23px] md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-purple-600"></div>
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
@@ -151,19 +159,19 @@ export default function Experience({ onSectionChange }: ExperienceProps) {
                       </div>
                     )}
 
-                    <div className="flex items-start justify-between mb-4">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
                       <div>
                         <h3 className="text-xl font-bold text-white mb-1">{exp.title}</h3>
                         <p className="text-blue-400 font-medium">{exp.company}</p>
                       </div>
-                      <div className="text-right">
-                        <div className="flex items-center gap-1 text-sm text-gray-400 mb-1">
-                          <Calendar size={14} />
-                          {exp.period}
+                      <div className="flex flex-col sm:items-end text-left sm:text-right shrink-0">
+                        <div className="flex items-center gap-1.5 text-sm text-gray-400 mb-1">
+                          <Calendar size={14} className="text-blue-400" />
+                          <span>{exp.period}</span>
                         </div>
-                        <div className="flex items-center gap-1 text-sm text-gray-400">
-                          <MapPin size={14} />
-                          {exp.location}
+                        <div className="flex items-center gap-1.5 text-sm text-gray-400">
+                          <MapPin size={14} className="text-blue-400" />
+                          <span>{exp.location}</span>
                         </div>
                       </div>
                     </div>
