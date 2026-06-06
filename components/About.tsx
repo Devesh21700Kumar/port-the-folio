@@ -16,8 +16,7 @@ export default function About({ onSectionChange }: AboutProps) {
       description: 'Pursuing advanced business education focusing on strategy, corporate finance, and technology management.',
       bullets: [
         'HEC Business Game 2026: Secured 2nd Place globally in the Schneider Electric Strategy Challenge and 3rd Place globally in the EY-Parthenon Strategic Case Challenge.',
-        'Honors: Winner of the Generative AI for Business Consulting Academy organized by Capgemini Invent.',
-        'Selected for the elite McKinsey & Co. Forward Program, focusing on strategic problem-solving and cross-functional decision-making.'
+        'Honors: Winner of the Generative AI for Business Consulting Academy organized by Capgemini Invent.'
       ]
     },
     {
@@ -26,7 +25,8 @@ export default function About({ onSectionChange }: AboutProps) {
       period: 'Aug 2019 – June 2023',
       description: 'Graduated with honors in Electrical, Electronics & Communications Engineering.',
       bullets: [
-        'Leadership: Founder of the ACM Student Chapter; managed a multi-disciplinary team to scale campus tech culture.'
+        'Leadership: Founder of the ACM Student Chapter; managed a multi-disciplinary team to scale campus tech culture.',
+        'PSD point in (Practice School Division) leadership for BITS'
       ]
     },
     {
