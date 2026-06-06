@@ -26,7 +26,7 @@ export default function About({ onSectionChange }: AboutProps) {
       description: 'Graduated with honors in Electrical, Electronics & Communications Engineering.',
       bullets: [
         'Leadership: Founder of the ACM Student Chapter; managed a multi-disciplinary team to scale campus tech culture.',
-        'PSD point in (Practice School Division) leadership for BITS'
+        'Appointed as Lead Software Developer to architect a comprehensive Learning Management System serving over 3,000 students annually across 3 national campuses.'
       ]
     },
     {
