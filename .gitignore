@@ -1,1 +1,10 @@
 node_modules
+.next
+.vscode
+.env
+.DS_Store
+.env.local
+.env.test
+.env.example
+.env.production
+
