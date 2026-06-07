@@ -20,12 +20,11 @@ export default function About({ onSectionChange }: AboutProps) {
       ]
     },
     {
-      degree: 'Bachelor of Engineering in Electrical, Electronics & Communications Engineering',
+      degree: 'Bachelor of Engineering in Electronics & Communications Engineering',
       school: 'BITS Pilani, India',
       period: 'Aug 2019 – June 2023',
-      description: 'Graduated with honors in Electrical, Electronics & Communications Engineering.',
       bullets: [
-        'Leadership: Founder of the ACM Student Chapter; managed a multi-disciplinary team to scale campus tech culture.',
+        'Founder of the ACM Student Chapter; managed a multi-disciplinary team to scale campus tech culture.',
         'Appointed as Lead Software Developer to architect a comprehensive Learning Management System serving over 3,000 students annually across 3 national campuses.'
       ]
     },
