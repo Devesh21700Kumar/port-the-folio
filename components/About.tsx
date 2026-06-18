@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { GraduationCap, MapPin, Phone, Mail, Globe, Trophy, ExternalLink, Calendar } from 'lucide-react'
+import { GraduationCap, MapPin, Mail, Globe, Trophy } from 'lucide-react'
 
 interface AboutProps {
   onSectionChange: (section: string) => void
@@ -55,8 +55,8 @@ export default function About({ onSectionChange }: AboutProps) {
   ]
 
   return (
-    <section id="about" className="py-16 px-4 relative">
-      <div className="max-w-6xl mx-auto">
+    <section id="about" className="py-16 px-4 relative overflow-hidden w-full">
+      <div className="max-w-6xl mx-auto w-full">
         
         {/* Section Header */}
         <motion.div
@@ -64,26 +64,24 @@ export default function About({ onSectionChange }: AboutProps) {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">
-            About <span className="gradient-text">Me</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white">
+            Education & <span className="gradient-text">Achievements</span>
           </h2>
-          <p className="text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            I am a Software Developer and Product Strategist with a unique combination of deep engineering experience and strategic management studies at <span className="text-white font-semibold">HEC Paris</span>. Currently building data products at <span className="text-white font-semibold">Amazon Luxembourg</span>, I excel at building complex technical platforms and aligning them with enterprise needs.
-          </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-8 mb-12">
+        {/* Education and Contact Info Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 w-full overflow-hidden">
           {/* Education Column */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="lg:col-span-8 space-y-6"
+            className="w-full lg:col-span-8 space-y-6"
           >
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-6 flex items-center gap-3">
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-4 flex items-center gap-3">
               <GraduationCap className="text-blue-400" size={24} />
               Education
             </h3>
@@ -92,24 +90,24 @@ export default function About({ onSectionChange }: AboutProps) {
               {education.map((edu, index) => (
                 <div
                   key={index}
-                  className="bg-slate-900/40 backdrop-blur-md rounded-xl p-6 border border-white/5 hover:border-blue-500/20 transition-all duration-300"
+                  className="bg-slate-900/40 backdrop-blur-md rounded-xl p-5 sm:p-6 border border-white/5 hover:border-blue-500/20 transition-all duration-300 w-full"
                 >
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
-                    <div>
-                      <h4 className="text-lg font-bold text-white">{edu.degree}</h4>
-                      <p className="text-sm text-blue-400 font-semibold">{edu.major}</p>
+                    <div className="min-w-0">
+                      <h4 className="text-base sm:text-lg font-bold text-white break-words">{edu.degree}</h4>
+                      <p className="text-xs sm:text-sm text-blue-400 font-semibold mt-0.5 break-words">{edu.major}</p>
                     </div>
-                    <span className="text-xs text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full w-fit shrink-0">
+                    <span className="text-[10px] sm:text-xs text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full w-fit shrink-0 font-medium">
                       {edu.period}
                     </span>
                   </div>
-                  <p className="text-slate-300 font-medium text-sm mb-4">{edu.school}</p>
+                  <p className="text-slate-300 font-medium text-xs sm:text-sm mb-4 break-words">{edu.school}</p>
                   
                   <ul className="space-y-2.5">
                     {edu.bullets.map((bullet, bIdx) => (
-                      <li key={bIdx} className="text-slate-400 text-xs md:text-sm flex items-start gap-2.5 leading-relaxed">
+                      <li key={bIdx} className="text-slate-400 text-xs sm:text-sm flex items-start gap-2 leading-relaxed">
                         <span className="text-blue-400 mt-1 flex-shrink-0">•</span>
-                        <span>{bullet}</span>
+                        <span className="break-words">{bullet}</span>
                       </li>
                     ))}
                   </ul>
@@ -124,30 +122,30 @@ export default function About({ onSectionChange }: AboutProps) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="lg:col-span-4 space-y-6"
+            className="w-full lg:col-span-4 space-y-6"
           >
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-6">Contact & Info</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-4">Contact & Info</h3>
             
-            <div className="bg-slate-900/40 backdrop-blur-md rounded-xl p-6 border border-white/5 space-y-4">
+            <div className="bg-slate-900/40 backdrop-blur-md rounded-xl p-4 sm:p-6 border border-white/5 space-y-4 w-full">
               {personalInfo.map((info, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-4 p-3 hover:bg-white/5 rounded-lg transition-colors duration-200"
+                  className="flex items-start gap-3 p-3 hover:bg-white/5 rounded-lg transition-colors duration-200 w-full min-w-0"
                 >
-                  <div className="p-2.5 bg-blue-500/10 rounded-lg text-blue-400">
-                    <info.icon size={18} />
+                  <div className="p-2.5 bg-blue-500/10 rounded-lg text-blue-400 shrink-0">
+                    <info.icon size={16} />
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-xs text-slate-500">{info.label}</p>
+                  <div className="min-w-0 flex-grow">
+                    <p className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">{info.label}</p>
                     {info.link ? (
                       <a
                         href={info.link}
-                        className="text-white hover:text-blue-400 transition-colors duration-200 font-medium text-sm truncate block"
+                        className="text-white hover:text-blue-400 transition-colors duration-200 font-semibold text-xs sm:text-sm break-all block mt-0.5"
                       >
                         {info.value}
                       </a>
                     ) : (
-                      <p className="text-white font-medium text-sm truncate">{info.value}</p>
+                      <p className="text-white font-semibold text-xs sm:text-sm break-words leading-relaxed mt-0.5">{info.value}</p>
                     )}
                   </div>
                 </div>
@@ -155,14 +153,14 @@ export default function About({ onSectionChange }: AboutProps) {
             </div>
 
             {/* Quick Metrics Cards */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-slate-900/40 backdrop-blur-md rounded-xl p-5 text-center border border-white/5 hover:border-blue-500/20 transition-all duration-300">
-                <p className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">4+</p>
-                <p className="text-xs text-slate-400 mt-1 font-medium">Years Dev Experience</p>
+            <div className="grid grid-cols-2 gap-4 w-full">
+              <div className="bg-slate-900/40 backdrop-blur-md rounded-xl p-4 text-center border border-white/5 hover:border-blue-500/20 transition-all duration-300 min-w-0">
+                <p className="text-xl sm:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">4+</p>
+                <p className="text-[10px] text-slate-400 mt-1 font-medium leading-tight break-words">Years Dev Experience</p>
               </div>
-              <div className="bg-slate-900/40 backdrop-blur-md rounded-xl p-5 text-center border border-white/5 hover:border-purple-500/20 transition-all duration-300">
-                <p className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Top 3</p>
-                <p className="text-xs text-slate-400 mt-1 font-medium">Global Strategy Finishes</p>
+              <div className="bg-slate-900/40 backdrop-blur-md rounded-xl p-4 text-center border border-white/5 hover:border-purple-500/20 transition-all duration-300 min-w-0">
+                <p className="text-xl sm:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Top 3</p>
+                <p className="text-[10px] text-slate-400 mt-1 font-medium leading-tight break-words">Global Strategy Finishes</p>
               </div>
             </div>
           </motion.div>
@@ -174,30 +172,30 @@ export default function About({ onSectionChange }: AboutProps) {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mt-16"
+          className="mt-16 w-full"
         >
           <h3 className="text-xl md:text-2xl font-bold text-white mb-8 flex items-center gap-3 justify-center">
             <Trophy className="text-yellow-400" size={24} />
-            Selective achievements & Open Source
+            Selective Achievements & Open Source
           </h3>
           
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
             {achievements.map((ach, index) => (
               <motion.div
                 key={index}
                 whileHover={{ y: -4 }}
-                className={`bg-gradient-to-br ${ach.color} backdrop-blur-md rounded-xl p-6 border transition-all duration-300 flex flex-col justify-between`}
+                className={`bg-gradient-to-br ${ach.color} backdrop-blur-md rounded-xl p-5 sm:p-6 border transition-all duration-300 flex flex-col justify-between w-full min-w-0`}
               >
                 <div>
                   <div className="flex justify-between items-start gap-4 mb-2">
-                    <h4 className="text-base md:text-lg font-bold text-white">{ach.title}</h4>
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-yellow-400 bg-yellow-400/10 px-2 py-0.5 rounded border border-yellow-400/20 shrink-0">
+                    <h4 className="text-sm sm:text-base font-bold text-white break-words">{ach.title}</h4>
+                    <span className="text-[9px] uppercase font-bold tracking-wider text-yellow-400 bg-yellow-400/10 px-2 py-0.5 rounded border border-yellow-400/20 shrink-0">
                       Selective
                     </span>
                   </div>
                   <p className="text-xs text-blue-400 font-semibold mb-3">{ach.org}</p>
-                  <p className="text-xs text-slate-200 mb-1 font-medium italic">{ach.selectivity}</p>
-                  <p className="text-xs md:text-sm text-slate-400 leading-relaxed mt-2">{ach.description}</p>
+                  <p className="text-xs text-slate-200 mb-1 font-medium italic break-words">{ach.selectivity}</p>
+                  <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mt-2 break-words">{ach.description}</p>
                 </div>
               </motion.div>
             ))}

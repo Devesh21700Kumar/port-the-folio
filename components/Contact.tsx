@@ -24,7 +24,7 @@ export default function Contact({ onSectionChange }: ContactProps) {
     {
       icon: MapPin,
       label: 'Location',
-      value: 'Luxembourg / France',
+      value: 'Luxembourg',
       link: null
     }
   ]
@@ -34,7 +34,7 @@ export default function Contact({ onSectionChange }: ContactProps) {
       icon: Github,
       label: 'GitHub',
       url: 'https://github.com/Devesh21700Kumar',
-      color: 'hover:bg-gray-700'
+      color: 'hover:bg-slate-700'
     },
     {
       icon: Linkedin,
@@ -45,8 +45,8 @@ export default function Contact({ onSectionChange }: ContactProps) {
   ]
 
   return (
-    <section id="contact" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+    <section id="contact" className="py-20 px-4 w-full overflow-hidden">
+      <div className="max-w-6xl mx-auto w-full">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -62,9 +62,9 @@ export default function Contact({ onSectionChange }: ContactProps) {
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto w-full">
           {/* Contact Cards Grid */}
-          <div className="grid md:grid-cols-3 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 w-full">
             {contactInfo.map((info, index) => (
               <motion.div
                 key={index}
@@ -72,7 +72,7 @@ export default function Contact({ onSectionChange }: ContactProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="flex flex-col items-center text-center p-6 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-blue-500/30 transition-all duration-300"
+                className="flex flex-col items-center text-center p-5 sm:p-6 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-blue-500/30 transition-all duration-300 w-full min-w-0"
               >
                 <div className="p-4 bg-blue-500/20 rounded-full mb-4">
                   <info.icon className="text-blue-400" size={28} />
@@ -81,12 +81,12 @@ export default function Contact({ onSectionChange }: ContactProps) {
                 {info.link ? (
                   <a
                     href={info.link}
-                    className="text-white hover:text-blue-400 transition-colors duration-300 font-medium break-all text-sm"
+                    className="text-white hover:text-blue-400 transition-colors duration-300 font-medium break-all text-sm w-full"
                   >
                     {info.value}
                   </a>
                 ) : (
-                  <p className="text-white font-medium text-sm">{info.value}</p>
+                  <p className="text-white font-medium text-sm break-words w-full">{info.value}</p>
                 )}
               </motion.div>
             ))}
