@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { GraduationCap, MapPin, Phone, Mail, Globe } from 'lucide-react'
+import { GraduationCap, MapPin, Phone, Mail, Globe, Trophy, ExternalLink, Calendar } from 'lucide-react'
 
 interface AboutProps {
   onSectionChange: (section: string) => void
@@ -10,169 +10,202 @@ interface AboutProps {
 export default function About({ onSectionChange }: AboutProps) {
   const education = [
     {
-      degree: 'Master in Management (Grande École) - Business Administration & Management',
+      degree: 'Master in Management (Grande École)',
+      major: 'Business Administration & Management',
       school: 'HEC Paris (Jouy-en-Josas, France)',
       period: 'Aug 2025 – July 2027',
-      description: 'Pursuing advanced business education focusing on strategy, corporate finance, and technology management.',
       bullets: [
         'HEC Business Game 2026: Secured 2nd Place globally in the Schneider Electric Strategy Challenge and 3rd Place globally in the EY-Parthenon Strategic Case Challenge.',
-        'Honors: Winner of the Generative AI for Business Consulting Academy organized by Capgemini Invent.'
+        'Winner of the Generative AI for Business Consulting Academy organized by Capgemini Invent.'
       ]
     },
     {
-      degree: 'Bachelor of Engineering in Electronics & Communications Engineering',
-      school: 'BITS Pilani, India',
+      degree: 'Bachelor of Engineering',
+      major: 'Electronics & Communications Engineering',
+      school: 'BITS Pilani (Birla Institute of Technology and Science), India',
       period: 'Aug 2019 – June 2023',
       bullets: [
-        'Founder of the ACM Student Chapter; managed a multi-disciplinary team to scale campus tech culture.',
-        'Appointed as Lead Software Developer to architect a comprehensive Learning Management System serving over 3,000 students annually across 3 national campuses.'
+        'Practice School Division (BITS Pilani): Appointed as Lead Developer to spearhead the end-to-end architecture of an enterprise Learning Management System serving 3,000+ students annually across 3 national campuses; directed a cross-functional squad of developers and aligned closely with faculty stakeholders to transform program delivery workflows.',
+        'Founder of the ACM Student Chapter: Directed a multi-disciplinary team to secure partnerships, and execute technical events.'
       ]
+    }
+  ]
+
+  const achievements = [
+    {
+      title: 'Google Summer of Code (GSoC \'21)',
+      org: 'JBoss Community',
+      selectivity: 'Selected among 45,000+ global applicants',
+      description: 'Scaled API architecture for JBoss Community backend infrastructure targeted at an emerging market education platform.',
+      color: 'from-orange-500/20 to-red-500/20 border-orange-500/30'
     },
     {
-      degree: '10+2, CBSE Secondary Education',
-      school: 'Lakshmipat Singhania Academy, Kolkata',
-      period: 'May 2017 – May 2019',
-      description: 'Completed with 94.2% marks.'
+      title: 'GitHub India Engineering Externship',
+      org: 'GitHub Education Team',
+      selectivity: 'Handpicked out of 14,000+ applicants',
+      description: 'Built core developer solutions alongside the GitHub Education team using Ruby on Rails.',
+      color: 'from-purple-500/20 to-indigo-500/20 border-purple-500/30'
     }
   ]
 
   const personalInfo = [
     { icon: Mail, label: 'Email', value: 'deveshk2102@gmail.com', link: 'mailto:deveshk2102@gmail.com' },
-    { icon: Phone, label: 'Phone', value: '+33 7 49 03 48 61', link: 'tel:+33749034861' },
-    { icon: MapPin, label: 'Location', value: 'Luxembourg / France', link: null },
-    { icon: Globe, label: 'Languages', value: 'English (Native), Hindi (Native), French (Elementary CEFR A2)', link: null }
+    { icon: MapPin, label: 'Location', value: 'Luxembourg', link: null },
+    { icon: Globe, label: 'Languages', value: 'English (Native), Hindi (Native), French (CEFR A2)', link: null }
   ]
 
   return (
-    <section id="about" className="py-20 px-4">
+    <section id="about" className="py-16 px-4 relative">
       <div className="max-w-6xl mx-auto">
+        
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">
             About <span className="gradient-text">Me</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            A passionate Software Engineer, Product Strategist, and Business Generalist with 4+ years of engineering and strategic experience. 
-            Currently pursuing my Master's in Management at HEC Paris Grande École and interning in Business Intelligence & Product at Amazon Luxembourg, I bridge the gap between technical execution and business strategy.
+          <p className="text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            I am a Software Developer and Product Strategist with a unique combination of deep engineering experience and strategic management studies at <span className="text-white font-semibold">HEC Paris</span>. Currently building data products at <span className="text-white font-semibold">Amazon Luxembourg</span>, I excel at building complex technical platforms and aligning them with enterprise needs.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Education Section */}
+        <div className="grid lg:grid-cols-12 gap-8 mb-12">
+          {/* Education Column */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="lg:col-span-8 space-y-6"
           >
-            <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-              <GraduationCap className="text-blue-400" size={28} />
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <GraduationCap className="text-blue-400" size={24} />
               Education
             </h3>
+            
             <div className="space-y-6">
               {education.map((edu, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10 hover:border-blue-500/30 transition-all duration-300"
+                  className="bg-slate-900/40 backdrop-blur-md rounded-xl p-6 border border-white/5 hover:border-blue-500/20 transition-all duration-300"
                 >
-                  <div className="flex justify-between items-start mb-2">
-                    <h4 className="text-lg font-semibold text-white">{edu.degree}</h4>
-                    <span className="text-sm text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full shrink-0 ml-4">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
+                    <div>
+                      <h4 className="text-lg font-bold text-white">{edu.degree}</h4>
+                      <p className="text-sm text-blue-400 font-semibold">{edu.major}</p>
+                    </div>
+                    <span className="text-xs text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full w-fit shrink-0">
                       {edu.period}
                     </span>
                   </div>
-                  <p className="text-blue-400 font-medium mb-2">{edu.school}</p>
-                  <p className="text-gray-300 text-sm mb-3">{edu.description}</p>
-                  {edu.bullets && (
-                    <ul className="space-y-2 mt-3 pl-1">
-                      {edu.bullets.map((bullet, bIdx) => (
-                        <li key={bIdx} className="text-gray-300 text-xs flex items-start gap-2">
-                          <span className="text-blue-400 mt-1 flex-shrink-0">•</span>
-                          <span>{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </motion.div>
+                  <p className="text-slate-300 font-medium text-sm mb-4">{edu.school}</p>
+                  
+                  <ul className="space-y-2.5">
+                    {edu.bullets.map((bullet, bIdx) => (
+                      <li key={bIdx} className="text-slate-400 text-xs md:text-sm flex items-start gap-2.5 leading-relaxed">
+                        <span className="text-blue-400 mt-1 flex-shrink-0">•</span>
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
             </div>
           </motion.div>
 
-          {/* Personal Info Section */}
+          {/* Side Details Panel */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
+            className="lg:col-span-4 space-y-6"
           >
-            <h3 className="text-2xl font-bold text-white mb-8">Personal Information</h3>
-            <div className="space-y-4">
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-6">Contact & Info</h3>
+            
+            <div className="bg-slate-900/40 backdrop-blur-md rounded-xl p-6 border border-white/5 space-y-4">
               {personalInfo.map((info, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex items-center gap-4 p-4 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-blue-500/30 transition-all duration-300"
+                  className="flex items-center gap-4 p-3 hover:bg-white/5 rounded-lg transition-colors duration-200"
                 >
-                  <div className="p-2 bg-blue-500/20 rounded-lg">
-                    <info.icon className="text-blue-400" size={20} />
+                  <div className="p-2.5 bg-blue-500/10 rounded-lg text-blue-400">
+                    <info.icon size={18} />
                   </div>
-                  <div className="flex-1">
-                    <p className="text-sm text-gray-400">{info.label}</p>
+                  <div className="min-w-0">
+                    <p className="text-xs text-slate-500">{info.label}</p>
                     {info.link ? (
                       <a
                         href={info.link}
-                        className="text-white hover:text-blue-400 transition-colors duration-300"
+                        className="text-white hover:text-blue-400 transition-colors duration-200 font-medium text-sm truncate block"
                       >
                         {info.value}
                       </a>
                     ) : (
-                      <p className="text-white">{info.value}</p>
+                      <p className="text-white font-medium text-sm truncate">{info.value}</p>
                     )}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
 
-            {/* Quick Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="mt-8 grid grid-cols-2 gap-4"
-            >
-            <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg p-6 text-center border border-blue-500/30">
-              <div className="text-3xl font-bold text-white mb-2">4+</div>
-              <div className="text-sm text-gray-300">Years Experience</div>
+            {/* Quick Metrics Cards */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-slate-900/40 backdrop-blur-md rounded-xl p-5 text-center border border-white/5 hover:border-blue-500/20 transition-all duration-300">
+                <p className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">4+</p>
+                <p className="text-xs text-slate-400 mt-1 font-medium">Years Dev Experience</p>
+              </div>
+              <div className="bg-slate-900/40 backdrop-blur-md rounded-xl p-5 text-center border border-white/5 hover:border-purple-500/20 transition-all duration-300">
+                <p className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Top 3</p>
+                <p className="text-xs text-slate-400 mt-1 font-medium">Global Strategy Finishes</p>
+              </div>
             </div>
-            <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg p-6 text-center border border-purple-500/30">
-              <div className="text-3xl font-bold text-white mb-2">6+</div>
-              <div className="text-sm text-gray-300">Domains Mastered</div>
-            </div>
-            </motion.div>
           </motion.div>
         </div>
 
-        {/* Call to Action */}
+        {/* Selective Achievements Section */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="mt-16"
         >
+          <h3 className="text-xl md:text-2xl font-bold text-white mb-8 flex items-center gap-3 justify-center">
+            <Trophy className="text-yellow-400" size={24} />
+            Selective achievements & Open Source
+          </h3>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {achievements.map((ach, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ y: -4 }}
+                className={`bg-gradient-to-br ${ach.color} backdrop-blur-md rounded-xl p-6 border transition-all duration-300 flex flex-col justify-between`}
+              >
+                <div>
+                  <div className="flex justify-between items-start gap-4 mb-2">
+                    <h4 className="text-base md:text-lg font-bold text-white">{ach.title}</h4>
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-yellow-400 bg-yellow-400/10 px-2 py-0.5 rounded border border-yellow-400/20 shrink-0">
+                      Selective
+                    </span>
+                  </div>
+                  <p className="text-xs text-blue-400 font-semibold mb-3">{ach.org}</p>
+                  <p className="text-xs text-slate-200 mb-1 font-medium italic">{ach.selectivity}</p>
+                  <p className="text-xs md:text-sm text-slate-400 leading-relaxed mt-2">{ach.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Call to Action */}
+        <div className="text-center mt-16">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -183,11 +216,12 @@ export default function About({ onSectionChange }: AboutProps) {
                 onSectionChange('experience')
               }
             }}
-            className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
+            className="px-8 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-full hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all duration-300 text-sm"
           >
-            View My Experience
+            View Work Experience
           </motion.button>
-        </motion.div>
+        </div>
+
       </div>
     </section>
   )

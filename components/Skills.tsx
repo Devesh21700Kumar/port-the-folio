@@ -2,414 +2,242 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Code, Database, Globe, Award } from 'lucide-react'
+import { Code, Award, Globe, Database, Cpu, Compass, BookOpen } from 'lucide-react'
 
 interface SkillsProps {
   onSectionChange: (section: string) => void
 }
 
 export default function Skills({ onSectionChange }: SkillsProps) {
-  const [activeTechTab, setActiveTechTab] = useState(0)
-  const [activeBusinessTab, setActiveBusinessTab] = useState(0)
+  const [activeTab, setActiveTab] = useState<'tech' | 'business'>('tech')
 
-  const techCategories = [
-    {
-      title: 'Programming Languages',
-      icon: Code,
-      skills: [
-        { name: 'JavaScript/TypeScript', level: 95, color: 'from-yellow-400 to-orange-500' },
-        { name: 'Python', level: 85, color: 'from-blue-500 to-cyan-500' },
-        { name: 'Go', level: 85, color: 'from-cyan-500 to-blue-600' },
-        { name: 'C/C++', level: 80, color: 'from-blue-600 to-purple-600' },
-        { name: 'Java', level: 75, color: 'from-red-500 to-orange-500' }
-      ]
-    },
-    {
-      title: 'Frontend Technologies',
-      icon: Globe,
-      skills: [
-        { name: 'React', level: 95, color: 'from-cyan-400 to-blue-500' },
-        { name: 'Next.js', level: 90, color: 'from-gray-700 to-black' },
-        { name: 'Vue.js', level: 80, color: 'from-green-400 to-green-600' },
-        { name: 'HTML/CSS', level: 95, color: 'from-orange-500 to-red-500' },
-        { name: 'Tailwind CSS', level: 90, color: 'from-cyan-500 to-blue-500' }
-      ]
-    },
-    {
-      title: 'Backend & Databases',
-      icon: Database,
-      skills: [
-        { name: 'Node.js', level: 90, color: 'from-green-500 to-green-700' },
-        { name: 'Express.js', level: 85, color: 'from-gray-600 to-gray-800' },
-        { name: 'PostgreSQL', level: 80, color: 'from-blue-500 to-blue-700' },
-        { name: 'MongoDB', level: 75, color: 'from-green-400 to-green-600' },
-        { name: 'Firebase', level: 70, color: 'from-yellow-500 to-orange-500' }
-      ]
-    },
-    {
-      title: 'Tools & Others',
-      icon: Award,
-      skills: [
-        { name: 'Git/GitHub', level: 95, color: 'from-gray-700 to-black' },
-        { name: 'Docker', level: 80, color: 'from-blue-500 to-blue-700' },
-        { name: 'AWS', level: 75, color: 'from-orange-500 to-yellow-500' },
-        { name: 'Figma', level: 70, color: 'from-purple-500 to-pink-500' },
-        { name: 'Postman', level: 85, color: 'from-orange-400 to-orange-600' }
-      ]
-    }
+  const techSkills = [
+    { name: 'System Design', level: 90, icon: Compass, color: 'from-blue-400 to-indigo-500' },
+    { name: 'React & Next.js', level: 95, icon: Code, color: 'from-cyan-400 to-blue-500' },
+    { name: 'TypeScript & JavaScript', level: 95, icon: Code, color: 'from-yellow-400 to-orange-500' },
+    { name: 'Node.js & Backend', level: 90, icon: Database, color: 'from-green-400 to-emerald-500' },
+    { name: 'Python', level: 85, icon: Cpu, color: 'from-blue-500 to-cyan-500' },
+    { name: 'gRPC & Microservices', level: 80, icon: Cpu, color: 'from-purple-500 to-pink-500' },
+    { name: 'PostgreSQL & Databases', level: 85, icon: Database, color: 'from-indigo-500 to-purple-600' },
+    { name: 'AWS & Cloud Architecture', level: 80, icon: Globe, color: 'from-orange-500 to-yellow-500' },
+    { name: 'GCP (Google Cloud)', level: 75, icon: Globe, color: 'from-blue-400 to-cyan-500' },
+    { name: 'MCP (Model Context Protocol)', level: 85, icon: Cpu, color: 'from-emerald-400 to-teal-500' }
   ]
 
-  const businessCategories = [
-    {
-      title: 'Strategy & Leadership',
-      icon: Award,
-      skills: [
-        { name: 'Product Strategy & Roadmap', level: 90, color: 'from-green-500 to-emerald-600' },
-        { name: 'Business Acumen & Case Analysis', level: 85, color: 'from-indigo-500 to-purple-600' },
-        { name: 'Decision-Making Under Ambiguity', level: 85, color: 'from-blue-500 to-cyan-500' },
-        { name: 'Cross-Functional Team Management', level: 90, color: 'from-orange-500 to-red-500' }
-      ]
-    },
-    {
-      title: 'Marketing & Growth',
-      icon: Globe,
-      skills: [
-        { name: 'Growth Hacking & Strategy', level: 85, color: 'from-pink-500 to-rose-600' },
-        { name: 'User Acquisition & Funnel Analytics', level: 85, color: 'from-purple-500 to-pink-500' },
-        { name: 'SEO & Distribution Analytics', level: 90, color: 'from-blue-500 to-indigo-500' },
-        { name: 'Market Research & Brand Strategy', level: 80, color: 'from-green-400 to-teal-500' }
-      ]
-    },
-    {
-      title: 'Operations & Supply Chain',
-      icon: Database,
-      skills: [
-        { name: 'Supply Chain Operations & Optimization', level: 85, color: 'from-orange-400 to-amber-600' },
-        { name: 'Remittance Automation Workflows', level: 85, color: 'from-yellow-500 to-orange-600' },
-        { name: 'Agile & Scrum Methodologies', level: 90, color: 'from-teal-500 to-emerald-600' },
-        { name: 'Project & Operations Management', level: 85, color: 'from-red-500 to-orange-500' }
-      ]
-    }
+  const businessSkills = [
+    { name: 'Data & Product Strategy', level: 95, icon: Compass, color: 'from-blue-400 to-indigo-500' },
+    { name: 'Team Management', level: 90, icon: BookOpen, color: 'from-cyan-400 to-blue-500' },
+    { name: 'Corporate Finance', level: 80, icon: BookOpen, color: 'from-emerald-400 to-teal-500' },
+    { name: 'Supply Chain Optimization', level: 85, icon: Database, color: 'from-orange-500 to-yellow-500' },
+    { name: 'Organizational Behavior', level: 85, icon: BookOpen, color: 'from-purple-500 to-pink-500' }
   ]
 
   const certifications = [
     {
-      name: 'Schneider Electric Strategy Challenge (2nd Place) & EY-Parthenon Strategic Case (3rd Place)',
-      issuer: 'HEC Business Game 2026',
-      year: '2026',
-      link: null
-    },
-    {
-      name: 'Winner: Generative AI for Business Consulting Academy',
-      issuer: 'Capgemini Invent',
-      year: '2025',
-      link: null
-    },
-    {
       name: 'Professional Scrum Master™ II',
       issuer: 'Scrum.org',
       year: '2024',
-      link: 'https://www.scrum.org/certificates/1206327'
+      link: 'https://www.scrum.org/certificates/1206327',
+      badge: 'PSM II'
     },
     {
       name: 'McKinsey & Co. Forward Program',
       issuer: 'McKinsey & Company',
       year: '2024',
-      link: 'https://www.credly.com/badges/83e7b516-ed31-403c-a913-0262c4c4435c/public_url'
-    },
-    {
-      name: 'Français CEFR A2',
-      issuer: 'Inlingua',
-      year: '2024',
-      link: null
-    },
-    {
-      name: 'Storytelling and influencing: Communicate with impact',
-      issuer: 'Macquarie University (Coursera)',
-      year: '2024',
-      link: null
-    },
-    {
-      name: 'Foundations of Project Management',
-      issuer: 'Google (Coursera)',
-      year: '2024',
-      link: null
-    },
-    {
-      name: 'Data Structures and Algorithms In C (DSA)',
-      issuer: 'Udemy',
-      year: '2020',
-      link: null
-    },
-    {
-      name: 'The Web Developer Bootcamp 2024',
-      issuer: 'Udemy',
-      year: '2020',
-      link: null
+      link: 'https://www.credly.com/badges/83e7b516-ed31-403c-a913-0262c4c4435c/public_url',
+      badge: 'Forward'
     }
   ]
 
+  const languages = [
+    { name: 'English', level: 'Native / Bilingual Proficiency', code: 'EN', color: 'from-blue-500 to-indigo-600' },
+    { name: 'Hindi', level: 'Native / Bilingual Proficiency', code: 'HI', color: 'from-orange-500 to-red-600' },
+    { name: 'French', level: 'Elementary (CEFR A2)', code: 'FR', color: 'from-blue-600 via-white to-red-600' }
+  ]
+
   return (
-    <section id="skills" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+    <section id="skills" className="py-16 px-4 relative">
+      <div className="max-w-5xl mx-auto">
+        
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Skills & <span className="gradient-text">Certifications</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">
+            Skills & <span className="gradient-text">Credentials</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            A comprehensive overview of my technical skills, business acumen, and professional certifications across multiple domains.
+          <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            A breakdown of my technical core stack, business intelligence expertise, and global certifications.
           </p>
         </motion.div>
 
-        {/* Side-by-side Skills Section */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-16 items-start">
-          
-          {/* Column 1: Technical Architecture (with animated tabs) */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="bg-white/5 backdrop-blur-sm rounded-lg p-8 border border-white/10 flex flex-col min-h-[480px]"
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 bg-blue-500/20 rounded-lg">
-                <Code className="text-blue-400" size={24} />
-              </div>
-              <h3 className="text-2xl font-bold text-white">Technical Architecture</h3>
-            </div>
-
-            {/* Sub-tabs for Tech categories */}
-            <div className="flex flex-wrap gap-1.5 mb-8 bg-slate-950/40 p-1.5 rounded-full border border-white/5 w-fit">
-              {techCategories.map((cat, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveTechTab(idx)}
-                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 relative ${
-                    activeTechTab === idx
-                      ? 'text-white'
-                      : 'text-gray-400 hover:text-white'
-                  }`}
-                >
-                  {activeTechTab === idx && (
-                    <motion.div
-                      layoutId="activeTechTabBubble"
-                      className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full -z-10"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  {cat.title.replace(' Technologies', '').replace(' Databases', '').replace(' Languages', '').replace(' & Others', '')}
-                </button>
-              ))}
-            </div>
-
-            {/* Render selected Tech Category Skills */}
-            <div className="space-y-5 flex-1 flex flex-col justify-start">
-              <AnimatePresence mode="wait">
+        {/* Tab Controls */}
+        <div className="flex justify-center mb-10">
+          <div className="bg-slate-900/60 backdrop-blur-md p-1.5 rounded-full border border-white/5 flex gap-1">
+            <button
+              onClick={() => setActiveTab('tech')}
+              className={`px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 relative ${
+                activeTab === 'tech' ? 'text-white' : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              {activeTab === 'tech' && (
                 <motion.div
-                  key={activeTechTab}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.25 }}
-                  className="space-y-5 w-full"
-                >
-                  {techCategories[activeTechTab].skills.map((skill, skillIndex) => (
-                    <div key={skillIndex}>
-                      <div className="flex justify-between items-center mb-1.5">
-                        <span className="text-gray-300 text-sm font-medium">{skill.name}</span>
-                        <span className="text-blue-400 text-sm font-semibold">{skill.level}%</span>
-                      </div>
-                      <div className="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-white/5">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${skill.level}%` }}
-                          transition={{ duration: 0.8, ease: "easeOut" }}
-                          className={`h-full rounded-full bg-gradient-to-r ${skill.color}`}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </motion.div>
-
-          {/* Column 2: Business & Strategy (with animated tabs) */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="bg-white/5 backdrop-blur-sm rounded-lg p-8 border border-white/10 flex flex-col min-h-[480px]"
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 bg-purple-500/20 rounded-lg">
-                <Award className="text-purple-400" size={24} />
-              </div>
-              <h3 className="text-2xl font-bold text-white">Business & Strategy</h3>
-            </div>
-
-            {/* Sub-tabs for Business categories */}
-            <div className="flex flex-wrap gap-1.5 mb-8 bg-slate-950/40 p-1.5 rounded-full border border-white/5 w-fit">
-              {businessCategories.map((cat, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveBusinessTab(idx)}
-                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 relative ${
-                    activeBusinessTab === idx
-                      ? 'text-white'
-                      : 'text-gray-400 hover:text-white'
-                  }`}
-                >
-                  {activeBusinessTab === idx && (
-                    <motion.div
-                      layoutId="activeBusinessTabBubble"
-                      className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full -z-10"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  {cat.title.replace(' & Leadership', '').replace(' & Growth', '').replace(' & Supply Chain', '')}
-                </button>
-              ))}
-            </div>
-
-            {/* Render selected Business Category Skills */}
-            <div className="space-y-5 flex-1 flex flex-col justify-start">
-              <AnimatePresence mode="wait">
+                  layoutId="activeSkillTab"
+                  className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full -z-10 shadow-[0_0_15px_rgba(59,130,246,0.3)]"
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
+              Technical Architecture
+            </button>
+            <button
+              onClick={() => setActiveTab('business')}
+              className={`px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 relative ${
+                activeTab === 'business' ? 'text-white' : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              {activeTab === 'business' && (
                 <motion.div
-                  key={activeBusinessTab}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.25 }}
-                  className="space-y-5 w-full"
-                >
-                  {businessCategories[activeBusinessTab].skills.map((skill, skillIndex) => (
-                    <div key={skillIndex}>
-                      <div className="flex justify-between items-center mb-1.5">
-                        <span className="text-gray-300 text-sm font-medium">{skill.name}</span>
-                        <span className="text-purple-400 text-sm font-semibold">{skill.level}%</span>
-                      </div>
-                      <div className="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-white/5">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${skill.level}%` }}
-                          transition={{ duration: 0.8, ease: "easeOut" }}
-                          className={`h-full rounded-full bg-gradient-to-r ${skill.color}`}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </motion.div>
-
+                  layoutId="activeSkillTab"
+                  className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full -z-10 shadow-[0_0_15px_rgba(59,130,246,0.3)]"
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
+              Business & Strategy
+            </button>
+          </div>
         </div>
 
-        {/* Certifications */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h3 className="text-3xl font-bold text-white text-center mb-8 flex items-center justify-center gap-3">
-            <Award className="text-blue-400" size={32} />
-            Certifications
-          </h3>
-          
-                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-             {certifications.map((cert, index) => (
-               <motion.div
-                 key={index}
-                 initial={{ opacity: 0, scale: 0.9 }}
-                 whileInView={{ opacity: 1, scale: 1 }}
-                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                 viewport={{ once: true }}
-                 whileHover={{ scale: 1.05 }}
-                 className={`bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10 hover:border-blue-500/30 transition-all duration-300 ${cert.link ? 'cursor-pointer' : ''}`}
-                 onClick={cert.link ? () => window.open(cert.link, '_blank') : undefined}
-               >
-                 <div className="flex justify-between items-start mb-3">
-                   <h4 className="text-white font-semibold text-sm leading-relaxed">{cert.name}</h4>
-                   <span className="text-blue-400 text-xs bg-blue-400/10 px-2 py-1 rounded-full">
-                     {cert.year}
-                   </span>
-                 </div>
-                 <p className="text-gray-400 text-xs">{cert.issuer}</p>
-                 {cert.link && (
-                   <p className="text-blue-400 text-xs mt-2">Click to verify →</p>
-                 )}
-               </motion.div>
-             ))}
-           </div>
-        </motion.div>
+        {/* Skills Grid */}
+        <div className="min-h-[300px] mb-16">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+              className="grid sm:grid-cols-2 gap-4"
+            >
+              {(activeTab === 'tech' ? techSkills : businessSkills).map((skill, idx) => {
+                const Icon = skill.icon
+                return (
+                  <div
+                    key={idx}
+                    className="bg-slate-900/40 backdrop-blur-md rounded-xl p-4 border border-white/5 hover:border-blue-500/20 transition-all duration-300 flex items-center gap-4"
+                  >
+                    <div className="p-2.5 bg-blue-500/10 rounded-lg text-blue-400 shrink-0">
+                      <Icon size={18} />
+                    </div>
+                    <div className="flex-grow min-w-0">
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="text-sm font-bold text-white truncate pr-2">{skill.name}</span>
+                        <span className="text-xs text-blue-400 font-bold shrink-0">{skill.level}%</span>
+                      </div>
+                      <div className="w-full bg-slate-950 rounded-full h-1.5 overflow-hidden border border-white/5">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: `${skill.level}%` }}
+                          transition={{ duration: 0.8, ease: 'easeOut' }}
+                          className={`h-full rounded-full bg-gradient-to-r ${skill.color}`}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
-        {/* Languages */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <h3 className="text-2xl font-bold text-white mb-8">Languages</h3>
-          <div className="flex flex-wrap justify-center gap-6">
-            {[
-              { lang: 'English', level: 'Native / Bilingual', color: 'from-blue-500 to-cyan-500' },
-              { lang: 'Hindi', level: 'Native / Bilingual', color: 'from-green-500 to-green-600' },
-              { lang: 'French', level: 'Elementary (CEFR A2)', color: 'from-purple-500 to-pink-500' }
-            ].map((language, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center"
-              >
-                <div className={`w-20 h-20 rounded-full bg-gradient-to-r ${language.color} flex items-center justify-center mx-auto mb-3`}>
-                  <span className="text-white font-bold text-lg">{language.lang[0]}</span>
-                </div>
-                <p className="text-white font-medium">{language.lang}</p>
-                <p className="text-gray-400 text-sm">{language.level}</p>
-              </motion.div>
-            ))}
+        {/* Certifications and Languages Grid */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Certifications Panel */}
+          <div>
+            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+              <Award className="text-yellow-400" size={20} />
+              Professional Certifications
+            </h3>
+            
+            <div className="space-y-4">
+              {certifications.map((cert, index) => (
+                <a
+                  key={index}
+                  href={cert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block bg-slate-900/40 backdrop-blur-md rounded-xl p-4 border border-white/5 hover:border-blue-500/20 transition-all duration-300"
+                >
+                  <div className="flex justify-between items-start gap-4">
+                    <div>
+                      <h4 className="text-sm sm:text-base font-bold text-white group-hover:text-blue-400 transition-colors duration-200">
+                        {cert.name}
+                      </h4>
+                      <p className="text-xs text-slate-500 mt-1">{cert.issuer}</p>
+                    </div>
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded border border-blue-500/20 shrink-0">
+                      {cert.badge}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center mt-3 pt-3 border-t border-white/5">
+                    <span className="text-[11px] text-slate-600">Issued: {cert.year}</span>
+                    <span className="text-[11px] text-blue-400 group-hover:underline flex items-center gap-1 font-semibold">
+                      Verify Credential →
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
-        </motion.div>
+
+          {/* Languages Panel */}
+          <div>
+            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+              <Globe className="text-blue-400" size={20} />
+              Languages spoken
+            </h3>
+            
+            <div className="space-y-4">
+              {languages.map((lang, index) => (
+                <div
+                  key={index}
+                  className="bg-slate-900/40 backdrop-blur-md rounded-xl p-4 border border-white/5 hover:border-purple-500/20 transition-all duration-300 flex items-center gap-4"
+                >
+                  {/* Flag-like Emblem */}
+                  <div className={`w-10 h-10 rounded-full bg-gradient-to-tr ${lang.color} flex items-center justify-center font-bold text-white shadow-md text-xs shrink-0`}>
+                    {lang.code}
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="text-sm sm:text-base font-bold text-white">{lang.name}</h4>
+                    <p className="text-xs text-slate-400 mt-0.5">{lang.level}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
         {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
+        <div className="text-center mt-16">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => {
-              const element = document.getElementById('contact')
+              const element = document.getElementById('interdisciplinary')
               if (element) {
                 element.scrollIntoView({ behavior: 'smooth' })
-                onSectionChange('contact')
+                onSectionChange('interdisciplinary')
               }
             }}
-            className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
+            className="px-8 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-full hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all duration-300 text-sm"
           >
-            Get In Touch
+            Explore My Approach
           </motion.button>
-        </motion.div>
+        </div>
+
       </div>
     </section>
   )

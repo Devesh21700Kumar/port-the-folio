@@ -1,257 +1,180 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
-import { Code, Users, TrendingUp, Palette, Globe, BookOpen, Zap } from 'lucide-react'
+import { Code, TrendingUp, Briefcase, Sparkles, BookOpen, Compass } from 'lucide-react'
 
 interface InterdisciplinaryProps {
   onSectionChange: (section: string) => void
 }
 
 export default function Interdisciplinary({ onSectionChange }: InterdisciplinaryProps) {
-  const [hoveredDomain, setHoveredDomain] = useState<string | null>(null)
+  const [selectedPillar, setSelectedPillar] = useState<number>(0)
 
-  const domains = [
+  const pillars = [
     {
-      id: 'tech',
-      title: 'Tech & Development',
+      title: 'Technical Foundation',
+      subtitle: 'Deep Engineering Competency',
       icon: Code,
-      color: 'from-orange-500 to-red-500',
-      bgColor: 'bg-orange-500/20',
-      borderColor: 'border-orange-500/30',
-      skills: ['Full Stack Development', 'React/Next.js', 'TypeScript', 'Node.js', 'Python', 'AI/NLP']
+      badge: 'Systems & Architecture',
+      description: 'Building high-performance client dashboards, custom Web SDKs, and enterprise microservices. Focus on Next.js/React, TypeScript, Python, and SQL.',
+      color: 'from-blue-500/20 to-indigo-500/20 border-blue-500/30 text-blue-400',
+      highlights: ['Enterprise System Integration', 'Robust SDK Development', 'Centralized UI Lib Architectures']
     },
     {
-      id: 'leadership',
-      title: 'Leadership & Management',
-      icon: Users,
-      color: 'from-green-500 to-emerald-500',
-      bgColor: 'bg-green-500/20',
-      borderColor: 'border-green-500/30',
-      skills: ['Team Leadership', 'Project Management', 'Agile/Scrum', 'Cross-functional Teams', 'Strategic Planning']
-    },
-    {
-      id: 'product',
-      title: 'Product Strategy',
+      title: 'Product & Data Strategy',
+      subtitle: 'Data-driven Decision Making',
       icon: TrendingUp,
-      color: 'from-blue-500 to-cyan-500',
-      bgColor: 'bg-blue-500/20',
-      borderColor: 'border-blue-500/30',
-      skills: ['Product Management', 'Business Analysis', 'Market Research', 'User Experience', 'Growth Strategy']
+      badge: 'BI & Product Analytics',
+      description: 'Defining user personas, conducting capacity analytics, and translating data trends into actionable insights for operational managers and leadership.',
+      color: 'from-purple-500/20 to-pink-500/20 border-purple-500/30 text-purple-400',
+      highlights: ['GenAI Analytics Dashboards', '11+ Operations Metrics Delivered', 'EU Logistics Anomalies Investigation']
     },
     {
-      id: 'creative',
-      title: 'Creative & Design',
-      icon: Palette,
-      color: 'from-purple-500 to-pink-500',
-      bgColor: 'bg-purple-500/20',
-      borderColor: 'border-purple-500/30',
-      skills: ['UI/UX Design', 'Graphic Design', 'Content Creation', 'Gamification', 'Visual Storytelling']
-    },
-    {
-      id: 'business',
-      title: 'Business & Finance',
-      icon: Globe,
-      color: 'from-indigo-500 to-purple-500',
-      bgColor: 'bg-indigo-500/20',
-      borderColor: 'border-indigo-500/30',
-      skills: ['Financial Markets', 'Investment Strategy', 'Business Development', 'Sales & Marketing', 'Entrepreneurship']
-    },
-    {
-      id: 'academic',
-      title: 'Academic Foundation',
-      icon: BookOpen,
-      color: 'from-cyan-500 to-blue-500',
-      bgColor: 'bg-cyan-500/20',
-      borderColor: 'border-cyan-500/30',
-      skills: ['Computer Science', 'AI & Machine Learning', 'Management Studies', 'Research & Analysis', 'Strategic Thinking']
+      title: 'Business & Leadership',
+      subtitle: 'Enterprise Management Focus',
+      icon: Briefcase,
+      badge: 'MiM HEC Paris',
+      description: 'Aligning multi-disciplinary engineering teams with strategic business objectives. Competitive case challenger at global business games.',
+      color: 'from-emerald-500/20 to-teal-500/20 border-emerald-500/30 text-emerald-400',
+      highlights: ['2nd Place Schneider Strategy Challenge', '3rd Place EY-Parthenon Case Challenge', 'Agile & Scrum Orchestration']
     }
   ]
 
-  const intersections = [
-    { domains: ['tech', 'product'], title: 'Technical Product Management' },
-    { domains: ['leadership', 'business'], title: 'Business Leadership' },
-    { domains: ['creative', 'tech'], title: 'Technical Design' },
-    { domains: ['product', 'business'], title: 'Strategic Product Planning' },
-    { domains: ['academic', 'tech'], title: 'Research-Driven Development' },
-    { domains: ['leadership', 'product'], title: 'Product Leadership' }
-  ]
-
   return (
-    <section id="interdisciplinary" className="py-20 px-4 relative overflow-hidden">
+    <section id="interdisciplinary" className="py-16 px-4 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <motion.div
-          animate={{ 
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-            rotate: [0, 180, 360]
-          }}
-          transition={{ 
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-xl"
-        />
-        <motion.div
-          animate={{ 
-            x: [0, -100, 0],
-            y: [0, 50, 0],
-            rotate: [0, -180, -360]
-          }}
-          transition={{ 
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute bottom-20 right-20 w-40 h-40 bg-gradient-to-r from-green-500/10 to-cyan-500/10 rounded-full blur-xl"
-        />
+        <div className="absolute top-1/3 left-10 w-48 h-48 bg-blue-500/5 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/3 right-10 w-56 h-56 bg-purple-500/5 rounded-full blur-3xl [animation-delay:3s] animate-float" />
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-5xl mx-auto relative z-10">
+        
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            My <span className="gradient-text">Interdisciplinary</span> Approach
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">
+            The <span className="gradient-text">T-Shaped</span> Profile
           </h2>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-            I bridge the gap between technology, business, and creativity. My diverse background allows me to approach problems 
-            from multiple angles, creating innovative solutions that drive both technical excellence and business value.
+          <p className="text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            I bridge the gap between technical complexity and business growth, combining a deep software engineering foundation with high-level corporate strategy.
           </p>
         </motion.div>
 
-        {/* Central Hub */}
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="flex justify-center mb-12"
-        >
-          <div className="relative">
-            <motion.div
-              animate={{ 
-                scale: [1, 1.05, 1],
-                rotate: [0, 5, -5, 0]
-              }}
-              transition={{ 
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="w-32 h-32 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-2xl border-4 border-white/20"
-            >
-              <div className="text-center">
-                <Zap className="text-white mx-auto mb-2" size={32} />
-                <p className="text-white font-bold text-sm">PRODUCT MANAGER</p>
-                <p className="text-white/80 text-xs">(Me)</p>
-              </div>
-            </motion.div>
+        <div className="grid md:grid-cols-12 gap-8 items-stretch">
+          
+          {/* Pillar Selector (Interactive List) */}
+          <div className="md:col-span-5 space-y-4 flex flex-col justify-center">
+            <h3 className="text-lg font-bold text-white mb-2 uppercase tracking-wider text-slate-500 text-xs flex items-center gap-2">
+              <Compass size={14} />
+              Core Competency Pillars
+            </h3>
+            
+            {pillars.map((pillar, idx) => {
+              const Icon = pillar.icon
+              const isSelected = selectedPillar === idx
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setSelectedPillar(idx)}
+                  className={`w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-center gap-4 ${
+                    isSelected
+                      ? 'bg-slate-900 border-blue-500/40 shadow-lg shadow-blue-500/5'
+                      : 'bg-slate-900/40 border-white/5 hover:border-white/10'
+                  }`}
+                >
+                  <div className={`p-2.5 rounded-lg shrink-0 ${
+                    isSelected ? 'bg-blue-500/20 text-blue-400' : 'bg-white/5 text-slate-400'
+                  }`}>
+                    <Icon size={20} />
+                  </div>
+                  <div>
+                    <h4 className={`text-sm sm:text-base font-bold ${isSelected ? 'text-white' : 'text-slate-300'}`}>
+                      {pillar.title}
+                    </h4>
+                    <p className="text-xs text-slate-500">{pillar.subtitle}</p>
+                  </div>
+                </button>
+              )
+            })}
           </div>
-        </motion.div>
 
-        {/* Domain Circles */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 mb-12">
-          {domains.map((domain, index) => (
-            <motion.div
-              key={domain.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              onHoverStart={() => setHoveredDomain(domain.id)}
-              onHoverEnd={() => setHoveredDomain(null)}
-              className="relative"
-            >
+          {/* Interactive Showcase Card */}
+          <div className="md:col-span-7">
+            <AnimatePresence mode="wait">
               <motion.div
-                whileHover={{ scale: 1.05, y: -10 }}
-                className={`p-6 rounded-2xl border-2 transition-all duration-300 ${domain.bgColor} ${domain.borderColor} hover:shadow-2xl`}
+                key={selectedPillar}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className={`h-full bg-gradient-to-br ${pillars[selectedPillar].color} backdrop-blur-md rounded-2xl p-6 md:p-8 border flex flex-col justify-between`}
               >
-                <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${domain.color} flex items-center justify-center mb-4 mx-auto`}>
-                  <domain.icon className="text-white" size={28} />
+                <div>
+                  <div className="flex justify-between items-center mb-6">
+                    <span className="text-[10px] uppercase font-extrabold tracking-wider bg-white/5 border border-white/10 px-3 py-1 rounded-full text-slate-300">
+                      {pillars[selectedPillar].badge}
+                    </span>
+                    <Sparkles size={18} className="text-yellow-400 animate-pulse" />
+                  </div>
+
+                  <h3 className="text-xl md:text-2xl font-black text-white mb-3">
+                    {pillars[selectedPillar].title}
+                  </h3>
+                  <p className="text-xs md:text-sm text-slate-300 leading-relaxed mb-6">
+                    {pillars[selectedPillar].description}
+                  </p>
+
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                      <BookOpen size={12} />
+                      Key Highlights
+                    </h4>
+                    <ul className="space-y-2">
+                      {pillars[selectedPillar].highlights.map((highlight, hIdx) => (
+                        <li key={hIdx} className="text-slate-200 text-xs sm:text-sm flex items-start gap-2.5 leading-relaxed">
+                          <span className="text-blue-400 mt-1 flex-shrink-0">•</span>
+                          <span>{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <h3 className="text-white font-bold text-lg mb-3 text-center">{domain.title}</h3>
-                
-                {hoveredDomain === domain.id && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="space-y-2"
-                  >
-                    {domain.skills.map((skill, skillIndex) => (
-                      <motion.div
-                        key={skillIndex}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: skillIndex * 0.1 }}
-                        className="text-gray-300 text-sm flex items-center gap-2"
-                      >
-                        <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${domain.color}`} />
-                        {skill}
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                )}
+
+                <div className="mt-8 pt-4 border-t border-white/5 text-xs text-slate-500 italic flex items-center gap-2">
+                  <Compass size={12} className="text-slate-600 animate-spin-[20s]" />
+                  Combined to deliver technical excellence and product value.
+                </div>
               </motion.div>
-            </motion.div>
-          ))}
+            </AnimatePresence>
+          </div>
+
         </div>
 
-        {/* Intersection Highlights */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <h3 className="text-2xl font-bold text-white mb-8">Where Domains Intersect</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {intersections.map((intersection, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
-                className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 hover:border-blue-500/30 transition-all duration-300"
-              >
-                <p className="text-blue-400 font-semibold text-sm">{intersection.title}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
         {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
+        <div className="text-center mt-16">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => {
-              const element = document.getElementById('experience')
+              const element = document.getElementById('contact')
               if (element) {
                 element.scrollIntoView({ behavior: 'smooth' })
-                onSectionChange('experience')
+                onSectionChange('contact')
               }
             }}
-            className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
+            className="px-8 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-full hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all duration-300 text-sm"
           >
-            See My Experience
+            Get in touch
           </motion.button>
-        </motion.div>
+        </div>
+
       </div>
     </section>
   )

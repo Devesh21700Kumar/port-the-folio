@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { ChevronDown, Github, Linkedin, Mail, Download } from 'lucide-react'
+import { ChevronDown, Github, Linkedin, Mail, FileText } from 'lucide-react'
 
 interface HeroProps {
   onSectionChange: (section: string) => void
@@ -10,7 +10,7 @@ interface HeroProps {
 
 export default function Hero({ onSectionChange }: HeroProps) {
   const [text, setText] = useState('')
-  const fullText = 'Business Intelligence & Product Intern @ Amazon'
+  const fullText = 'Business Intelligence & Product @ Amazon'
   
   useEffect(() => {
     let index = 0
@@ -21,7 +21,7 @@ export default function Hero({ onSectionChange }: HeroProps) {
       } else {
         clearInterval(timer)
       }
-    }, 100)
+    }, 80)
     
     return () => clearInterval(timer)
   }, [])
@@ -35,163 +35,129 @@ export default function Hero({ onSectionChange }: HeroProps) {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{ 
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-            rotate: [0, 180, 360]
-          }}
-          transition={{ 
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute top-20 left-20 w-32 h-32 bg-blue-500/10 rounded-full blur-xl"
-        />
-        <motion.div
-          animate={{ 
-            x: [0, -100, 0],
-            y: [0, 50, 0],
-            rotate: [0, -180, -360]
-          }}
-          transition={{ 
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute bottom-20 right-20 w-40 h-40 bg-purple-500/10 rounded-full blur-xl"
-        />
-        <motion.div
-          animate={{ 
-            x: [0, 150, 0],
-            y: [0, 100, 0],
-            rotate: [0, 90, 180]
-          }}
-          transition={{ 
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute top-1/2 left-1/2 w-24 h-24 bg-cyan-500/10 rounded-full blur-xl"
-        />
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden py-12 px-4">
+      {/* Premium Mesh Gradient Background */}
+      <div className="absolute inset-0 overflow-hidden bg-slate-950">
+        <div className="absolute -inset-[10px] opacity-30">
+          <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-blue-600 rounded-full mix-blend-screen filter blur-[80px] sm:blur-[120px] animate-float" />
+          <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] sm:w-[600px] sm:h-[600px] bg-purple-600 rounded-full mix-blend-screen filter blur-[80px] sm:blur-[125px] [animation-delay:2s] animate-float" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] bg-emerald-600 rounded-full mix-blend-screen filter blur-[85px] sm:blur-[110px] [animation-delay:4s] animate-float" />
+        </div>
+        
+        {/* Subtle grid pattern overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30" />
       </div>
 
-      <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-        {/* Profile Image */}
+      <div className="relative z-10 text-center max-w-4xl mx-auto px-4 flex flex-col items-center">
+        {/* Decorative Badge */}
         <motion.div
-          initial={{ scale: 0, opacity: 0 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="mb-6 px-4 py-1.5 bg-blue-500/10 border border-blue-500/30 rounded-full backdrop-blur-md"
+        >
+          <span className="text-xs font-semibold text-blue-400 tracking-wider uppercase">Welcome to my space</span>
+        </motion.div>
+
+        {/* Profile Emblem / Monogram */}
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ type: 'spring', stiffness: 100, delay: 0.2 }}
           className="mb-8"
         >
-          <div className="relative inline-block">
-            <div className="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-blue-500/30 shadow-2xl">
-              <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                <span className="text-6xl font-bold text-white">D</span>
-              </div>
+          <div className="relative inline-block group">
+            <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur opacity-40 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
+            <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden border-2 border-white/10 bg-slate-900 flex items-center justify-center shadow-2xl">
+              <span className="text-5xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+                DK
+              </span>
             </div>
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"
-            />
           </div>
         </motion.div>
 
         {/* Main Text */}
         <motion.h1
-          initial={{ y: 50, opacity: 0 }}
+          initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-5xl md:text-7xl font-bold text-white mb-4"
+          className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight mb-4"
         >
           Devesh Kumar
         </motion.h1>
 
         <motion.h2
-          initial={{ y: 50, opacity: 0 }}
+          initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-2xl md:text-3xl text-blue-400 mb-6"
+          className="text-lg sm:text-2xl md:text-3xl text-blue-400 font-semibold mb-6 h-8 sm:h-10"
         >
           {text}
           <span className="animate-pulse">|</span>
         </motion.h2>
 
         <motion.p
-          initial={{ y: 50, opacity: 0 }}
+          initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
+          className="text-sm sm:text-lg text-slate-300 mb-8 max-w-2xl leading-relaxed"
         >
-          HEC Paris MiM Grande École Student | Business Intelligence & Product Intern @ Amazon | Ex-GitHub, GSoC, MPL, InMobi
+          HEC Paris MiM Grande École Student & Amazon BI/Product Intern. Bridging the gap between engineering systems and business strategy.
         </motion.p>
 
         {/* Social Links */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
+          initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="flex justify-center space-x-6 mb-8"
+          className="flex justify-center space-x-4 mb-8"
         >
-          <motion.a
-            href="https://github.com/Devesh21700Kumar"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, y: -5 }}
-            whileTap={{ scale: 0.95 }}
-            className="p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-blue-500/20 transition-all duration-300"
-          >
-            <Github size={24} />
-          </motion.a>
-          <motion.a
-            href="https://www.linkedin.com/in/devesh-kumar-529982198/"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, y: -5 }}
-            whileTap={{ scale: 0.95 }}
-            className="p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-blue-500/20 transition-all duration-300"
-          >
-            <Linkedin size={24} />
-          </motion.a>
-          <motion.a
-            href="mailto:deveshk2102@gmail.com"
-            whileHover={{ scale: 1.1, y: -5 }}
-            whileTap={{ scale: 0.95 }}
-            className="p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-blue-500/20 transition-all duration-300"
-          >
-            <Mail size={24} />
-          </motion.a>
+          {[
+            { href: 'https://github.com/Devesh21700Kumar', icon: Github, label: 'GitHub' },
+            { href: 'https://www.linkedin.com/in/devesh-kumar-529982198/', icon: Linkedin, label: 'LinkedIn' },
+            { href: 'mailto:deveshk2102@gmail.com', icon: Mail, label: 'Email' }
+          ].map((soc, idx) => (
+            <motion.a
+              key={idx}
+              href={soc.href}
+              target={soc.href.startsWith('mailto') ? undefined : '_blank'}
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1, y: -3 }}
+              whileTap={{ scale: 0.95 }}
+              aria-label={soc.label}
+              className="p-3 bg-white/5 border border-white/10 hover:border-blue-500/40 rounded-full text-white hover:text-blue-400 transition-all duration-300 hover:shadow-[0_0_15px_rgba(59,130,246,0.2)]"
+            >
+              <soc.icon size={20} />
+            </motion.a>
+          ))}
         </motion.div>
 
         {/* CTA Buttons */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
+          initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          transition={{ duration: 0.8, delay: 1.1 }}
+          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
         >
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={scrollToAbout}
-            className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
+            className="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white font-semibold rounded-full hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] transition-all duration-300"
           >
-            Learn More
+            Explore Portfolio
           </motion.button>
+          
           <motion.a
             href="https://drive.google.com/drive/folders/1rwnG-zAmedQ49_Ue_kuQVVqYdaEHosit?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 border-2 border-blue-500 text-blue-400 font-semibold rounded-full hover:bg-blue-500/10 transition-all duration-300 flex items-center gap-2"
+            className="w-full sm:w-auto px-8 py-3.5 border border-slate-700 hover:border-blue-500/60 bg-slate-900/60 text-slate-300 hover:text-white font-semibold rounded-full backdrop-blur-md transition-all duration-300 flex items-center justify-center gap-2"
           >
-            <Download size={20} />
-            Download CV
+            <FileText size={18} />
+            View Resume
           </motion.a>
         </motion.div>
       </div>
@@ -200,16 +166,17 @@ export default function Hero({ onSectionChange }: HeroProps) {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        transition={{ delay: 1.5, duration: 0.5 }}
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden sm:block"
       >
         <motion.button
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           onClick={scrollToAbout}
-          className="text-white/60 hover:text-white transition-colors duration-300"
+          className="text-slate-500 hover:text-white transition-colors duration-300"
+          aria-label="Scroll Down"
         >
-          <ChevronDown size={32} />
+          <ChevronDown size={28} />
         </motion.button>
       </motion.div>
     </section>
